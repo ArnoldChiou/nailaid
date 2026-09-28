@@ -32,6 +32,8 @@ export const metadata: Metadata = {
     "到府卸甲", "到院卸甲", "台北卸甲", "新北卸甲", "桃園卸甲", "卸光療", "卸水晶指甲",
   ],
   formatDetection: { telephone: true },
+  // Google Search Console (same token is also a DNS TXT record on nailaid.nordchiou.com).
+  verification: { google: "-p6L4GAaXc3dZ7VYhPYLwA045PqRamo1JJp_SSyzrfI" },
   robots: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
 };
 
