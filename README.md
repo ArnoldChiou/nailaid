@@ -58,7 +58,10 @@ select vault.create_secret('<同上的亂碼>', 'notify_webhook_secret');
 3. Repo → Settings → Secrets and variables → Actions → **Variables** 新增：
    - `NEXT_PUBLIC_SUPABASE_URL`
    - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
-4. 每次 push 到 `main` 會自動部署到 `https://arnoldchiou.github.io/nailaid/`。
+4. 每次 push 到 `main` 會自動部署到 **https://nailaid.nordchiou.com/**。
+   - 自訂網域：Cloudflare DNS 的 `nailaid` CNAME → `arnoldchiou.github.io`（先 DNS only 灰雲，HTTPS 憑證簽好後可改橘雲並把 SSL/TLS 設為 Full）。
+   - Repo → Settings → Pages 的 Custom domain 為 `nailaid.nordchiou.com`，並勾選 Enforce HTTPS。
+   - 舊網址 `arnoldchiou.github.io/nailaid/` 會由 GitHub 自動轉址。
 
 > anon key 設計上可以公開，資料安全由資料庫的 RLS 保護。LINE token 只存在 Supabase secrets，**不要**放進 repo。
 
