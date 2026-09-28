@@ -71,77 +71,80 @@ h3,
   line-height: 1.85;
 }
 
-.field {
-  width: 100%;
-  border: 2px solid var(--border);
-  background: var(--surface);
-  border-radius: 1rem;
-  padding: 0.7rem 0.9rem;
-  font-size: 1rem;
-}
-.field:focus {
-  outline: none;
-  border-color: var(--peach);
-  box-shadow: 0 0 0 3px var(--brand-soft);
-}
+/* Components live in a layer so Tailwind utilities (bg-*, px-*, …) can override them. */
+@layer components {
+  .field {
+    width: 100%;
+    border: 2px solid var(--border);
+    background: var(--surface);
+    border-radius: 1rem;
+    padding: 0.7rem 0.9rem;
+    font-size: 1rem;
+  }
+  .field:focus {
+    outline: none;
+    border-color: var(--peach);
+    box-shadow: 0 0 0 3px var(--brand-soft);
+  }
 
-/* Chunky "pressable" buttons with an ink outline and drop edge. */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.4em;
-  font-family: var(--font-round);
-  font-weight: 400;
-  border: 2px solid var(--ink);
-  border-radius: 999px;
-  padding: 0.7rem 1.6rem;
-  box-shadow: 0 4px 0 var(--ink);
-  transition: transform 0.08s, box-shadow 0.08s;
-  color: var(--ink);
-  background: var(--surface);
-}
-.btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 5px 0 var(--ink);
-}
-.btn:active {
-  transform: translateY(3px);
-  box-shadow: 0 1px 0 var(--ink);
-}
-.btn:disabled {
-  opacity: 0.6;
-  transform: none;
-}
-.btn-peach {
-  background: var(--peach);
-}
-.btn-mint {
-  background: var(--mint);
-}
-.btn-butter {
-  background: var(--butter);
-}
-.btn-line {
-  background: var(--line);
-  color: #fff;
-}
+  /* Chunky "pressable" buttons with an ink outline and drop edge. */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4em;
+    font-family: var(--font-round);
+    font-weight: 400;
+    border: 2px solid var(--ink);
+    border-radius: 999px;
+    padding: 0.7rem 1.6rem;
+    box-shadow: 0 4px 0 var(--ink);
+    transition: transform 0.08s, box-shadow 0.08s;
+    color: var(--ink);
+    background: var(--surface);
+  }
+  .btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 0 var(--ink);
+  }
+  .btn:active {
+    transform: translateY(3px);
+    box-shadow: 0 1px 0 var(--ink);
+  }
+  .btn:disabled {
+    opacity: 0.6;
+    transform: none;
+  }
+  .btn-peach {
+    background: var(--peach);
+  }
+  .btn-mint {
+    background: var(--mint);
+  }
+  .btn-butter {
+    background: var(--butter);
+  }
+  .btn-line {
+    background: var(--line);
+    color: #fff;
+  }
 
-/* Wobbly paper card */
-.paper {
-  background: var(--surface);
-  border: 2px solid var(--border);
-  border-radius: 28px 34px 26px 32px / 32px 26px 34px 28px;
-}
+  /* Wobbly paper card */
+  .paper {
+    background: var(--surface);
+    border: 2px solid var(--border);
+    border-radius: 28px 34px 26px 32px / 32px 26px 34px 28px;
+  }
 
-/* Sticker-like tag */
-.sticker {
-  display: inline-block;
-  font-family: var(--font-round);
-  padding: 0.3rem 0.9rem;
-  border: 2px dashed rgba(74, 52, 40, 0.45);
-  border-radius: 999px;
-  font-size: 0.92rem;
+  /* Sticker-like tag */
+  .sticker {
+    display: inline-block;
+    font-family: var(--font-round);
+    padding: 0.3rem 0.9rem;
+    border: 2px dashed rgba(74, 52, 40, 0.45);
+    border-radius: 999px;
+    font-size: 0.92rem;
+  }
 }
 
 /* Hand-drawn wavy underline */
