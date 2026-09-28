@@ -4,23 +4,24 @@ import { SITE } from "./site";
  * Single source for the FAQ page and its FAQPage JSON-LD.
  * Questions are phrased the way people ask search engines / AI assistants;
  * each answer leads with the direct answer, then the detail.
+ * Medical statements are attributed to the cited hospital guidance, never stated as universal rules.
  */
 export const FAQ: { q: string; a: string }[] = [
   {
     q: "開刀前一定要卸指甲油、光療指甲嗎？",
-    a: "是的。麻醉與手術時會用夾在手指或腳趾的血氧機，透過光線穿透指甲量測血氧；指甲油、光療凝膠、水晶指甲會阻擋光線讓數值失準，也會遮住缺氧時指甲床變藍紫色的警訊，所以醫院會要求入院前全部卸除。實際規定請以您的醫院指示為準。",
+    a: `通常需要。醫院多半會請病人在手術、麻醉前卸除指甲油、光療凝膠與水晶指甲；依${SITE.sourceName}說明，是因為指甲彩繪可能干擾血氧機量測，也會遮住缺氧時指甲床變色的警訊。實際規定請依您的主治醫師、麻醉團隊與醫院的術前指示為準。`,
   },
   {
     q: "指甲油會影響血氧機嗎？",
-    a: "會。血氧機靠紅光與紅外光穿透指甲與甲床來量測，深色或鮮豔的指甲油、光療凝膠會吸收或阻擋光線，可能讓血氧數值不準確，或在血氧下降時延遲警報。",
+    a: `可能會。依${SITE.sourceName}說明，血氧機靠紅光與紅外光穿透指甲與甲床來量測，深色或鮮豔的指甲油、光療凝膠可能阻擋或吸收光線，使讀數不準確或警報延遲。`,
   },
   {
     q: "透明或裸色的指甲油也要卸嗎？",
-    a: "要。醫院通常要求所有指甲油、光療、水晶指甲都卸除，不論顏色。實際規定請以您的醫院指示為準。",
+    a: "多數醫院會請病人卸除所有指甲油、光療與水晶指甲，不論顏色。是否一定要卸，請以您的醫院術前指示為準。",
   },
   {
     q: "只卸手指可以嗎？腳趾甲也要卸嗎？",
-    a: "建議手腳都卸。血氧機有時會夾在腳趾上，腳趾的彩繪同樣會影響量測。",
+    a: "建議手腳都卸。血氧機有時會夾在腳趾上，腳趾的彩繪同樣可能影響量測。",
   },
   {
     q: "光療或水晶指甲可以自己卸嗎？",
@@ -48,7 +49,7 @@ export const FAQ: { q: string; a: string }[] = [
   },
   {
     q: "半夜或假日也能預約嗎？",
-    a: "可以。我們全天候接單，含夜間與假日，另有公告暫停時除外。",
+    a: `可以。${SITE.hours}`,
   },
   {
     q: "可以只卸、不做新的嗎？",

@@ -14,29 +14,21 @@ const areaServed = CITIES.map((c) => ({
   containedInPlace: { "@type": "Country", name: "台灣" },
 }));
 
+// Organization, not a LocalBusiness/NailSalon: there is no storefront or public address —
+// the service travels to homes and hospital wards within the areas below.
 export function businessSchema() {
   return {
     "@context": "https://schema.org",
-    "@type": "NailSalon",
+    "@type": "Organization",
     "@id": BUSINESS_ID,
     name: `${SITE.name} ${SITE.nameEn}`,
     alternateName: [SITE.name, SITE.nameEn],
-    description: SITE.description,
+    description: `${SITE.description} 無實體店面，到府與到院病房服務。`,
     url: `${SITE.url}/`,
     logo: abs("/icon-512.png"),
     image: abs(SITE.ogImage),
     telephone: "+886-926-192-178",
-    priceRange: `NT$${SITE.basePrice}起`,
-    currenciesAccepted: "TWD",
-    paymentAccepted: "現金, 銀行匯款",
     areaServed,
-    // Mobile service with no storefront: open around the clock unless a notice says otherwise.
-    openingHoursSpecification: {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-      opens: "00:00",
-      closes: "23:59",
-    },
     sameAs: [SITE.lineUrl],
     contactPoint: {
       "@type": "ContactPoint",
@@ -44,6 +36,14 @@ export function businessSchema() {
       telephone: "+886-926-192-178",
       areaServed: "TW",
       availableLanguage: ["zh-Hant"],
+      description: SITE.hours,
+      hoursAvailable: {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+        opens: "00:00",
+        closes: "23:59",
+        description: SITE.hours,
+      },
     },
     knowsAbout: ["手術前卸甲", "術前卸除指甲油", "光療指甲卸除", "水晶指甲卸除", "住院卸指甲"],
   };
@@ -68,8 +68,7 @@ export function serviceSchema() {
     "@type": "Service",
     name: "手術前指甲卸除（到府／到院病房）",
     serviceType: "手術前指甲油、光療、水晶指甲卸除",
-    description:
-      "手術、麻醉前卸除手腳指甲油、光療凝膠、水晶指甲、甲片與鑽飾。到府或到院病房服務，全天候接急件。",
+    description: `手術、麻醉前卸除手腳指甲油、光療凝膠、水晶指甲、甲片與鑽飾。到府或到院病房服務。${SITE.hours}付款方式：現金或銀行匯款。`,
     provider: { "@id": BUSINESS_ID },
     areaServed,
     availableChannel: {
@@ -113,19 +112,20 @@ export function faqSchema(items: typeof FAQ) {
   };
 }
 
-export function articleSchema({ path, title, description }: { path: string; title: string; description: string }) {
+// Plain WebPage (not Article/MedicalWebPage): the content is a summary of the cited hospital
+// guidance, not our own medical writing. Only the visible "last updated" date is declared.
+export function infoPageSchema({ path, title, description }: { path: string; title: string; description: string }) {
   return {
     "@context": "https://schema.org",
-    "@type": "Article",
-    headline: title,
+    "@type": "WebPage",
+    name: title,
     description,
+    url: abs(path),
     inLanguage: "zh-Hant-TW",
-    mainEntityOfPage: abs(path),
-    image: abs(SITE.ogImage),
-    datePublished: "2026-09-28",
-    dateModified: SITE.updated,
-    author: { "@id": BUSINESS_ID },
+    isPartOf: { "@id": WEBSITE_ID },
     publisher: { "@id": BUSINESS_ID },
+    primaryImageOfPage: abs(SITE.ogImage),
+    dateModified: SITE.updated,
     citation: { "@type": "CreativeWork", name: SITE.sourceName, url: SITE.sourceUrl },
     about: ["脈搏血氧儀", "術前準備", "指甲油卸除"],
   };

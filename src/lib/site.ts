@@ -7,7 +7,9 @@ export const SITE = {
   updated: "2026-09-29",
   tagline: "手術前指甲卸除・到府到院・急件可接",
   description:
-    "手術、麻醉前需卸除指甲油、光療與水晶指甲。甲援提供台北、新北、桃園到府與到院病房卸甲服務，全天候接急件。",
+    "醫院多半會請病人在手術、麻醉前卸除指甲油、光療與水晶指甲。甲援提供台北、新北、桃園到府與到院病房卸甲服務，全天候接急件（另有公告暫停時除外）。",
+  // One wording for availability everywhere (FAQ, JSON-LD, llms.txt).
+  hours: "全天候接單，含夜間與假日；另有網站公告暫停時除外。",
   // Buttons that depend on these are hidden while they are empty.
   phone: "0926-192-178",
   lineId: "@059twduh",

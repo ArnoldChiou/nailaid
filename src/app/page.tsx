@@ -31,7 +31,7 @@ export default function Home() {
               交給我們<span className="squiggle">卸乾淨</span>
             </h1>
             <p className="mt-5 text-lg leading-relaxed text-muted">
-              麻醉前，醫院會請您卸掉指甲油、光療和水晶指甲。
+              麻醉前，醫院通常會請您卸掉指甲油、光療和水晶指甲。
               沒空、不方便出門、已經住院了？我們帶著工具箱去找您。
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
@@ -60,7 +60,7 @@ export default function Home() {
                 <span className="font-round flex h-11 w-11 shrink-0 items-center justify-center rounded-full border-2 border-ink bg-peach text-xl">1</span>
                 <div>
                   <p className="font-round text-xl">血氧機會量不準</p>
-                  <p className="mt-1 leading-relaxed text-muted">麻醉時手指會夾血氧機，靠紅光穿過指甲量血氧。指甲油、光療會擋住光，數字就不準了。</p>
+                  <p className="mt-1 leading-relaxed text-muted">麻醉時手指會夾血氧機，靠紅光穿過指甲量血氧。指甲油、光療可能擋住光，讓數字不準。</p>
                 </div>
               </li>
               <li className="flex gap-4">

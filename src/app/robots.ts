@@ -3,12 +3,12 @@ import { SITE } from "@/lib/site";
 
 export const dynamic = "force-static";
 
-// Search engines and AI answer engines (GPTBot, ClaudeBot, PerplexityBot, Google-Extended…)
-// are all welcome on public pages; the admin area and per-customer pages are excluded.
+// Everything is crawlable, including by AI answer engines (GPTBot, ClaudeBot, PerplexityBot,
+// Google-Extended…). Private pages (/admin/, /booking/, /book/done/) are kept out of results with
+// a noindex meta tag instead of Disallow — a blocked page's noindex can never be read.
 export default function robots(): MetadataRoute.Robots {
   return {
-    rules: [{ userAgent: "*", allow: "/", disallow: ["/admin/", "/book/done/", "/booking/"] }],
+    rules: [{ userAgent: "*", allow: "/" }],
     sitemap: `${SITE.url}/sitemap.xml`,
-    host: SITE.url,
   };
 }
