@@ -34,7 +34,7 @@ Deno.serve(async (req) => {
     : b.address ?? "";
 
   const text = [
-    `【指安 新預約】${URGENCY[b.urgency] ?? b.urgency}`,
+    `【甲援 新預約】${URGENCY[b.urgency] ?? b.urgency}`,
     `編號：${b.booking_no}`,
     `手術：${tw(b.surgery_at)}`,
     `希望時段：\n${(b.preferred_slots as string[]).map((s) => "・" + tw(s)).join("\n")}`,

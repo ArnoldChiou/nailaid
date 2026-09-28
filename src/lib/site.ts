@@ -1,9 +1,9 @@
 export const SITE = {
-  name: "指安",
-  nameEn: "NailSafe",
+  name: "甲援",
+  nameEn: "NailAid",
   tagline: "手術前指甲卸除・到府到院・急件可接",
   description:
-    "手術、麻醉前需卸除指甲油、光療與水晶指甲。指安提供台北、新北、桃園到府與到院病房卸甲服務，全天候接急件。",
+    "手術、麻醉前需卸除指甲油、光療與水晶指甲。甲援提供台北、新北、桃園到府與到院病房卸甲服務，全天候接急件。",
   // Buttons that depend on these are hidden while they are empty.
   phone: "0926-192-178",
   lineId: "@059twduh",

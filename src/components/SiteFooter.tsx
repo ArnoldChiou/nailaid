@@ -24,7 +24,7 @@ export default function SiteFooter() {
               <span className="mx-2">|</span>
               LINE <a href={SITE.lineUrl} className="underline">{SITE.lineId}</a>
             </p>
-            <Art name="flowers" className="mt-4 w-44" />
+            <Art name="flowers" sizes="176px" className="mt-4 w-44" />
           </div>
           <ul className="space-y-2 text-[0.95rem]">
             {NAV.map((n) => (
@@ -36,7 +36,7 @@ export default function SiteFooter() {
           <ul className="space-y-2 text-[0.95rem]">
             <li><Link href="/book/" className="text-muted hover:text-brand">線上預約</Link></li>
             <li><Link href="/booking/" className="text-muted hover:text-brand">查詢我的預約</Link></li>
-            <li><Link href="/about/" className="text-muted hover:text-brand">關於指安</Link></li>
+            <li><Link href="/about/" className="text-muted hover:text-brand">關於甲援</Link></li>
             <li><Link href="/privacy/" className="text-muted hover:text-brand">隱私權政策</Link></li>
             <li><Link href="/terms/" className="text-muted hover:text-brand">服務條款</Link></li>
           </ul>

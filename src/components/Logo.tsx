@@ -1,9 +1,8 @@
-/* eslint-disable @next/next/no-img-element */
 import { SITE } from "@/lib/site";
-import { asset } from "@/lib/asset";
+import { Art } from "./Deco";
 
 export function LogoMark({ className = "h-10 w-10" }: { className?: string }) {
-  return <img src={asset("/art/mascot.webp")} alt="" className={`art ${className}`} />;
+  return <Art name="mascot" eager sizes="40px" className={className} />;
 }
 
 export default function Logo() {

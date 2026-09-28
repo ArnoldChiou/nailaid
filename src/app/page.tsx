@@ -39,7 +39,7 @@ export default function Home() {
               <span className="text-muted">24 小時內急件 +{SITE.rushFee}</span>
             </div>
           </div>
-          <Art name="hero" eager alt="美甲師提著工具箱到病房，病人開心揮手" className="w-full md:-mr-8 md:scale-110" />
+          <Art name="hero" eager sizes="(min-width: 768px) 560px, 100vw" alt="美甲師提著工具箱到病房，病人開心揮手" className="w-full md:-mr-8 md:scale-110" />
         </div>
       </section>
 
@@ -47,7 +47,7 @@ export default function Home() {
       <Wave fill="var(--surface-2)" />
       <section className="bg-surface-2">
         <div className="mx-auto grid max-w-5xl items-center gap-6 px-4 py-10 md:grid-cols-[0.8fr_1.2fr] md:py-14">
-          <Art name="oximeter" alt="手指夾著血氧機" className="mx-auto w-64 rounded-[58%_42%_52%_48%/48%_56%_44%_52%] border-2 border-border md:w-full" />
+          <Art name="oximeter" sizes="(min-width: 768px) 400px, 256px" alt="手指夾著血氧機" className="mx-auto w-64 rounded-[58%_42%_52%_48%/48%_56%_44%_52%] border-2 border-border md:w-full" />
           <div>
             <h2 className="text-[1.8rem] md:text-[2.2rem]">為什麼開刀前要卸甲？</h2>
             <ol className="mt-6 space-y-5">
@@ -80,14 +80,14 @@ export default function Home() {
         <h2 className="text-center text-[1.8rem] md:text-[2.2rem]">我們去找您</h2>
         <div className="mt-10 grid gap-12 md:grid-cols-2 md:gap-10">
           <figure className="tape relative -rotate-2 rounded-md border border-border bg-surface p-3 pb-5 shadow-[0_6px_18px_rgba(74,52,40,0.10)]">
-            <Art name="home" alt="美甲師到家裡幫奶奶卸指甲" className="aspect-[4/3] w-full rounded-sm object-cover" />
+            <Art name="home" sizes="(min-width: 768px) 460px, 100vw" alt="美甲師到家裡幫奶奶卸指甲" className="aspect-[4/3] w-full rounded-sm object-cover" />
             <figcaption className="px-2 pt-4">
               <p className="font-round text-2xl">到府服務</p>
               <p className="mt-1 text-muted">在家就能處理好，長輩、行動不便的人不用出門。</p>
             </figcaption>
           </figure>
           <figure className="tape relative rotate-2 rounded-md border border-border bg-surface p-3 pb-5 shadow-[0_6px_18px_rgba(74,52,40,0.10)] md:mt-8">
-            <Art name="hero" alt="美甲師到病房服務" className="aspect-[4/3] w-full rounded-sm object-cover object-[70%_50%]" />
+            <Art name="hero" sizes="(min-width: 768px) 460px, 100vw" alt="美甲師到病房服務" className="aspect-[4/3] w-full rounded-sm object-cover object-[70%_50%]" />
             <figcaption className="px-2 pt-4">
               <p className="font-round text-2xl">到院病房</p>
               <p className="mt-1 text-muted">已經住院、明天就開刀？直接到病床邊幫您卸。</p>
@@ -104,7 +104,7 @@ export default function Home() {
             <li key={s.t} className="contents">
               {i > 0 && <Doodle className="hidden w-16 self-center md:block" />}
               <div className="flex items-center gap-4 md:flex-col md:text-center">
-                <Art name={s.art} className="w-24 shrink-0 md:w-36" />
+                <Art name={s.art} sizes="(min-width: 768px) 144px, 96px" className="w-24 shrink-0 md:w-36" />
                 <div>
                   <p className="font-round text-xl"><span className="text-brand">{i + 1}.</span> {s.t}</p>
                   <p className="mt-1 text-muted">{s.d}</p>

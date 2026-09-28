@@ -1,0 +1,85 @@
+{
+  "hero": {
+    "w": 1200,
+    "h": 800,
+    "widths": [
+      480,
+      800,
+      1200
+    ],
+    "lqip": null
+  },
+  "home": {
+    "w": 800,
+    "h": 600,
+    "widths": [
+      480,
+      800
+    ],
+    "lqip": "data:image/webp;base64,UklGRmQAAABXRUJQVlA4IFgAAADwAQCdASoQAAwAA4BaJbACdAED+b3Tt7AA/vUExLMfDTTSroqGEOUK3AMotIB5a9xvlpEMxdJqAPN92jq48zcQF/Ac7ykv3EW/OwuvOsYndDRluuPzjgAA"
+  },
+  "oximeter": {
+    "w": 640,
+    "h": 640,
+    "widths": [
+      320,
+      640
+    ],
+    "lqip": "data:image/webp;base64,UklGRk4AAABXRUJQVlA4IEIAAAAQAgCdASoQABAAA4BaJbACdAEPAweWG04AAP73CIPwIVBWFsigvhA62q7w3dx10FVgIPGT0ZDY2UfdWZzCFIjcIAA="
+  },
+  "step-book": {
+    "w": 320,
+    "h": 320,
+    "widths": [
+      160,
+      320
+    ],
+    "lqip": null
+  },
+  "step-chat": {
+    "w": 320,
+    "h": 320,
+    "widths": [
+      160,
+      320
+    ],
+    "lqip": null
+  },
+  "step-care": {
+    "w": 320,
+    "h": 320,
+    "widths": [
+      160,
+      320
+    ],
+    "lqip": null
+  },
+  "done": {
+    "w": 320,
+    "h": 320,
+    "widths": [
+      160,
+      320
+    ],
+    "lqip": null
+  },
+  "mascot": {
+    "w": 320,
+    "h": 320,
+    "widths": [
+      80,
+      160,
+      320
+    ],
+    "lqip": null
+  },
+  "flowers": {
+    "w": 520,
+    "h": 260,
+    "widths": [
+      260,
+      520
+    ],
+    "lqip": null
+  }
+}

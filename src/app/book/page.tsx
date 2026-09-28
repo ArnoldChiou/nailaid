@@ -15,7 +15,7 @@ export default function BookPage() {
           <h1 className="text-[2rem]">線上預約</h1>
           <p className="mt-2 text-muted">約 1 分鐘完成。送出後我們會以電話或 LINE 與您確認時間與金額。</p>
         </div>
-        <Art name="step-book" eager className="w-24 shrink-0 md:w-28" />
+        <Art name="step-book" eager sizes="112px" className="w-24 shrink-0 md:w-28" />
       </div>
       <BookingForm />
     </div>

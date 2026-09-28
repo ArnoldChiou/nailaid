@@ -1,20 +1,22 @@
-// Turns the Codex-generated PNGs in /art into web-ready WebP files in /public/art.
+// Turns the Codex-generated PNGs in /art into responsive AVIF + WebP files in /public/art,
+// and writes src/lib/art.json (dimensions, widths, tiny blurred placeholder) for <Art>.
 // The paper background is flood-filled from the image edges into transparency, so
 // illustrations sit directly on the page without a visible box.
 //   node scripts/process-art.mjs
+import fs from "node:fs";
 import sharp from "sharp";
 
 const JOBS = [
-  // name, output width, crop (fraction kept, centered), cutout background?
-  ["hero", 1400, 1, true],
-  ["home", 1000, 1, false],
-  ["oximeter", 900, 0.8, false],
-  ["step-book", 420, 0.5, true],
-  ["step-chat", 420, 0.5, true],
-  ["step-care", 420, 0.5, true],
-  ["done", 420, 0.5, true],
-  ["mascot", 360, 0.5, true],
-  ["flowers", 520, [0.6, 0.45], true],
+  // name, output widths, crop (fraction kept, centered), cutout background?
+  ["hero", [480, 800, 1200], 1, true],
+  ["home", [480, 800], 1, false],
+  ["oximeter", [320, 640], 0.8, false],
+  ["step-book", [160, 320], 0.5, true],
+  ["step-chat", [160, 320], 0.5, true],
+  ["step-care", [160, 320], 0.5, true],
+  ["done", [160, 320], 0.5, true],
+  ["mascot", [80, 160, 320], 0.5, true],
+  ["flowers", [260, 520], [0.6, 0.45], true],
 ];
 
 const NEAR = 18; // colour distance treated as fully background
@@ -46,19 +48,36 @@ function cutout(data, w, h) {
   }
 }
 
-for (const [name, width, crop, transparent] of JOBS) {
+fs.rmSync("public/art", { recursive: true, force: true });
+fs.mkdirSync("public/art", { recursive: true });
+const manifest = {};
+let total = 0;
+
+for (const [name, widths, crop, transparent] of JOBS) {
   let img = sharp(`art/${name}.png`);
   const { width: W, height: H } = await img.metadata();
   const [fx, fy] = Array.isArray(crop) ? crop : [crop, crop];
   const cw = Math.round(W * fx), ch = Math.round(H * fy);
   if (fx < 1 || fy < 1) img = img.extract({ left: Math.round((W - cw) / 2), top: Math.round((H - ch) / 2), width: cw, height: ch });
-  img = img.resize({ width });
 
-  if (transparent) {
-    const { data, info } = await img.ensureAlpha().raw().toBuffer({ resolveWithObject: true });
-    cutout(data, info.width, info.height);
-    img = sharp(data, { raw: info });
+  // Master at the largest size, cut out once, then downscale from it.
+  img = img.resize({ width: Math.max(...widths) });
+  const { data, info } = await img.ensureAlpha().raw().toBuffer({ resolveWithObject: true });
+  if (transparent) cutout(data, info.width, info.height);
+  const master = () => sharp(data, { raw: info });
+
+  for (const w of widths) {
+    const a = await master().resize({ width: w }).avif({ quality: 55, effort: 6 }).toFile(`public/art/${name}-${w}.avif`);
+    const b = await master().resize({ width: w }).webp({ quality: 78, alphaQuality: 85 }).toFile(`public/art/${name}-${w}.webp`);
+    total += a.size;
+    console.log(`${name}-${w}`, `avif ${Math.round(a.size / 1024)}KB`, `webp ${Math.round(b.size / 1024)}KB`);
   }
-  const out = await img.webp({ quality: 82, alphaQuality: 90 }).toFile(`public/art/${name}.webp`);
-  console.log(name, `${out.width}x${out.height}`, `${Math.round(out.size / 1024)}KB`);
+
+  // 16px blurred preview, only for opaque images (it would show through transparent ones).
+  const lqip = transparent ? null :
+    "data:image/webp;base64," + (await master().resize({ width: 16 }).webp({ quality: 40 }).toBuffer()).toString("base64");
+  manifest[name] = { w: info.width, h: info.height, widths, lqip };
 }
+
+fs.writeFileSync("src/lib/art.json", JSON.stringify(manifest, null, 2) + "\n");
+console.log(`AVIF total (all sizes): ${Math.round(total / 1024)}KB`);

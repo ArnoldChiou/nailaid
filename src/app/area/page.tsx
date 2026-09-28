@@ -4,7 +4,7 @@ import { CTA, Container, PageHeader } from "@/components/ui";
 
 export const metadata: Metadata = {
   title: "服務範圍",
-  description: "指安提供台北市、新北市、桃園市到府與到院病房卸甲服務。",
+  description: "甲援提供台北市、新北市、桃園市到府與到院病房卸甲服務。",
 };
 
 export default function AreaPage() {

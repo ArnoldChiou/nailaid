@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { CTA, Container, PageHeader } from "@/components/ui";
 
-export const metadata: Metadata = { title: "關於指安" };
+export const metadata: Metadata = { title: "關於甲援" };
 
 export default function AboutPage() {
   return (
@@ -13,7 +13,7 @@ export default function AboutPage() {
           光療和水晶指甲沒辦法用去光水處理，一般美甲店又常常排不到、或不接只卸不做的單。
         </p>
         <p>
-          「指安」取「指甲平安」的意思。我們專門處理術前卸甲，到府、到院病房都可以，
+          「甲援」就是指甲的救援。我們專門處理術前卸甲，到府、到院病房都可以，
           希望讓病人和家屬把心力留給真正重要的事。
         </p>
         <CTA />

@@ -1,8 +1,38 @@
-/* eslint-disable @next/next/no-img-element -- static export serves pre-optimized WebP */
 import { asset } from "@/lib/asset";
+import ART from "@/lib/art.json";
 
-export function Art({ name, alt = "", className = "", eager = false }: { name: string; alt?: string; className?: string; eager?: boolean }) {
-  return <img src={asset(`/art/${name}.webp`)} alt={alt} className={`art ${className}`} loading={eager ? "eager" : "lazy"} decoding="async" />;
+type ArtName = keyof typeof ART;
+type ArtInfo = { w: number; h: number; widths: number[]; lqip: string | null };
+
+/**
+ * Responsive illustration: the browser picks AVIF (or WebP) at the smallest width that
+ * covers `sizes`, so phones download a fraction of the desktop file.
+ */
+export function Art({
+  name, alt = "", className = "", sizes = "100vw", eager = false,
+}: { name: string; alt?: string; className?: string; sizes?: string; eager?: boolean }) {
+  const info = ART[name as ArtName] as ArtInfo;
+  const set = (ext: string) => info.widths.map((w) => `${asset(`/art/${name}-${w}.${ext}`)} ${w}w`).join(", ");
+  const largest = info.widths[info.widths.length - 1];
+  return (
+    <picture className="contents">
+      <source type="image/avif" srcSet={set("avif")} sizes={sizes} />
+      <img
+        src={asset(`/art/${name}-${largest}.webp`)}
+        srcSet={set("webp")}
+        sizes={sizes}
+        width={info.w}
+        height={info.h}
+        alt={alt}
+        // width/height attrs reserve space; h-auto keeps the ratio unless a fixed height is given.
+        className={`art ${/(^|\s)h-/.test(className) ? "" : "h-auto"} ${className}`}
+        loading={eager ? "eager" : "lazy"}
+        fetchPriority={eager ? "high" : "auto"}
+        decoding="async"
+        style={info.lqip ? { backgroundImage: `url(${info.lqip})`, backgroundSize: "cover" } : undefined}
+      />
+    </picture>
+  );
 }
 
 /** Wavy edge between sections; `fill` is the colour of the section it leads into. */

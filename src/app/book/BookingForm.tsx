@@ -176,7 +176,7 @@ export default function BookingForm() {
           rush_fee: e.rushFee,
           city: f.city as CityId,
           payment_method: f.payment_method as "cash" | "transfer",
-          bank_info: "（示範）銀行代碼 000｜帳號 0000-0000-0000｜戶名 指安",
+          bank_info: "（示範）銀行代碼 000｜帳號 0000-0000-0000｜戶名 甲援",
           demo: true,
         };
       }
@@ -356,7 +356,7 @@ export default function BookingForm() {
                 我已閱讀並同意
                 <Link href="/terms/" target="_blank" className="mx-1 text-brand underline">服務條款</Link>與
                 <Link href="/privacy/" target="_blank" className="mx-1 text-brand underline">隱私權政策</Link>
-                ，同意指安為安排服務蒐集上述資料。
+                ，同意甲援為安排服務蒐集上述資料。
               </span>
             </label>
           </>

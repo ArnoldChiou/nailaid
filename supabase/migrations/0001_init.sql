@@ -1,4 +1,4 @@
--- 指安 NailSafe — initial schema
+-- 甲援 NailAid (formerly 指安 NailSafe) — initial schema
 -- Visitors never touch tables directly: they call create_booking / get_booking /
 -- active_notices (security definer). Only admins (public.admins) can read or edit rows.
 

@@ -14,7 +14,7 @@ export default function SiteHeader() {
   return (
     <header className="sticky top-0 z-30 border-b-2 border-dashed border-border bg-bg/95 backdrop-blur">
       <div className="mx-auto flex h-[68px] max-w-5xl items-center justify-between px-4">
-        <Link href="/" onClick={() => setOpen(false)} aria-label="指安 首頁">
+        <Link href="/" onClick={() => setOpen(false)} aria-label="甲援 首頁">
           <Logo />
         </Link>
 

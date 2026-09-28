@@ -41,7 +41,7 @@ export default function DonePage() {
   return (
     <div className="mx-auto max-w-xl px-4 py-10">
       <div className="text-center">
-        <Art name="done" eager className="mx-auto w-40" />
+        <Art name="done" eager sizes="160px" className="mx-auto w-40" />
         <h1 className="mt-4 text-[1.9rem] font-bold">預約已送出</h1>
         <p className="mt-2 text-muted">我們會盡快以電話或 LINE 與您確認時間與金額{b.urgency === "rush" && "，急件會優先處理"}。</p>
         {b.demo && <p className="mt-3 text-sm text-rush">（示範模式：此預約未被儲存）</p>}

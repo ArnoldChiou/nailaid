@@ -1,4 +1,4 @@
-# 指安 NailSafe
+# 甲援 NailAid
 
 手術前指甲卸除 — 到府／到院接案預約網站。架構說明見 [ARCHITECTURE.md](ARCHITECTURE.md)。
 
