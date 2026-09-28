@@ -10,19 +10,19 @@ export const metadata: Metadata = {
 export default function AreaPage() {
   return (
     <>
-      <PageHeader eyebrow="服務範圍" title="台北・新北・桃園" lead="到府或到院病房服務。其他地區歡迎先用 LINE 或電話詢問。" />
+      <PageHeader art="step-book" eyebrow="服務範圍" title="台北・新北・桃園" lead="到府或到院病房服務。其他地區歡迎先用 LINE 或電話詢問。" />
       <Container className="space-y-10 py-10">
         <div className="grid gap-4 sm:grid-cols-3">
           {CITIES.map((c) => (
-            <div key={c.id} className="rounded-2xl border border-border bg-surface p-5">
-              <p className="text-xl font-bold">{c.name}</p>
+            <div key={c.id} className="paper p-5">
+              <p className="text-xl">{c.name}</p>
               <p className="mt-1 text-muted">{c.travel}</p>
             </div>
           ))}
         </div>
 
         <section className="space-y-3">
-          <h2 className="text-2xl font-bold">到院病房服務須知</h2>
+          <h2 className="text-2xl">到院病房服務須知</h2>
           <ul className="list-disc space-y-2 pl-5 leading-relaxed">
             <li>預約時請填寫醫院名稱與病房號（不確定可先填醫院，之後再告訴我們）。</li>
             <li>部分醫院有探病時間或訪客人數限制，我們會配合院方規定，必要時請家屬協助接應。</li>

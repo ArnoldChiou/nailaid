@@ -23,11 +23,11 @@ const FAQ: [string, string][] = [
 export default function FaqPage() {
   return (
     <>
-      <PageHeader eyebrow="常見問題" title="您可能想知道" />
+      <PageHeader art="step-chat" eyebrow="常見問題" title="您可能想知道" />
       <Container className="space-y-3 py-10">
         {FAQ.map(([q, a]) => (
-          <details key={q} className="group rounded-2xl border border-border bg-surface px-5 py-4 open:shadow-sm">
-            <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-lg font-semibold">
+          <details key={q} className="group paper px-5 py-4 open:shadow-sm">
+            <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-round text-lg">
               {q}
               <span className="text-brand transition group-open:rotate-45" aria-hidden>＋</span>
             </summary>

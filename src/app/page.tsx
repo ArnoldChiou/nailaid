@@ -1,117 +1,121 @@
 import Link from "next/link";
 import { SITE } from "@/lib/site";
 import { CTA } from "@/components/ui";
-import OximeterDiagram from "@/components/OximeterDiagram";
+import { Art, Doodle, Wave } from "@/components/Deco";
 
 const STEPS = [
-  { t: "線上預約", d: "填寫手術時間、地點與指甲狀況，1 分鐘完成。" },
-  { t: "確認時間與費用", d: "我們以電話或 LINE 與您確認時段、車馬費與總金額。" },
-  { t: "到府／到院卸除", d: "專業工具溫和卸除，不傷甲床，手腳一次處理乾淨。" },
+  { art: "step-book", t: "線上預約", d: "填手術時間、地點和指甲狀況，1 分鐘就好。" },
+  { art: "step-chat", t: "確認時間與費用", d: "我們用電話或 LINE 跟您確認時段、車馬費和金額。" },
+  { art: "step-care", t: "到府／到院卸除", d: "溫和卸除不傷甲床，手腳一次處理乾淨。" },
 ];
 
 export default function Home() {
   return (
     <>
       {/* Hero */}
-      <section className="overflow-hidden bg-surface-2">
-        <div className="mx-auto grid max-w-5xl items-center gap-8 px-4 py-12 md:grid-cols-[1.2fr_1fr] md:py-20">
-          <div>
-            <p className="mb-3 inline-block rounded-full bg-brand-soft px-3 py-1 text-sm font-semibold text-brand-strong">
-              台北・新北・桃園｜全天候接急件
-            </p>
-            <h1 className="text-[2.1rem] font-bold leading-[1.25] md:text-5xl">
-              手術前指甲卸除，
+      <section className="overflow-hidden">
+        <div className="mx-auto grid max-w-5xl items-center gap-4 px-4 pb-8 pt-8 md:grid-cols-[1fr_1.15fr] md:gap-2 md:pb-14 md:pt-14">
+          <div className="relative z-10">
+            <div className="flex flex-wrap gap-2">
+              <span className="sticker -rotate-2 bg-mint/60">台北・新北・桃園</span>
+              <span className="sticker rotate-1 bg-butter">急件 OK ♡</span>
+            </div>
+            <h1 className="mt-5 text-[2.3rem] leading-[1.3] md:text-[3.1rem]">
+              手術前的指甲，
               <br />
-              <span className="text-brand">到府、到院</span>都可以
+              交給我們<span className="squiggle">卸乾淨</span>
             </h1>
             <p className="mt-5 text-lg leading-relaxed text-muted">
-              麻醉前醫院會要求卸除所有指甲油、光療與水晶指甲。
-              沒時間、行動不便、已經住院？指安直接到您身邊處理。
+              麻醉前，醫院會請您卸掉指甲油、光療和水晶指甲。
+              沒空、不方便出門、已經住院了？我們帶著工具箱去找您。
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
-              <Link href="/book/" className="rounded-full bg-brand px-7 py-3.5 text-lg font-bold text-white hover:bg-brand-strong">
-                立即預約
-              </Link>
-              {SITE.lineUrl && (
-                <a href={SITE.lineUrl} className="rounded-full bg-line px-7 py-3.5 text-lg font-bold text-white">
-                  LINE 詢問
-                </a>
-              )}
-              <Link href="/why/" className="rounded-full border border-border bg-surface px-6 py-3.5 text-lg font-semibold">
-                為什麼要卸？
-              </Link>
+              <Link href="/book/" className="btn btn-peach text-lg">立即預約</Link>
+              {SITE.lineUrl && <a href={SITE.lineUrl} className="btn btn-line text-lg">LINE 問問看</a>}
             </div>
-            <p className="mt-5 text-muted">
-              台北市 <strong className="text-ink">NT${SITE.basePrice.toLocaleString()} 起</strong>
-              <span className="mx-2 text-border">|</span>
-              24 小時內急件 +NT${SITE.rushFee}
-            </p>
+            <div className="mt-7 inline-block -rotate-1 rounded-2xl border-2 border-dashed border-border bg-surface px-4 py-2.5">
+              <span className="font-round text-lg">台北市 NT${SITE.basePrice.toLocaleString()} 起</span>
+              <span className="mx-2 text-border">｜</span>
+              <span className="text-muted">24 小時內急件 +{SITE.rushFee}</span>
+            </div>
           </div>
-          <OximeterDiagram />
+          <Art name="hero" eager alt="美甲師提著工具箱到病房，病人開心揮手" className="w-full md:-mr-8 md:scale-110" />
         </div>
       </section>
 
       {/* Why */}
-      <section className="mx-auto max-w-5xl px-4 py-14">
-        <h2 className="text-2xl font-bold md:text-3xl">為什麼手術前一定要卸甲？</h2>
-        <div className="mt-6 grid gap-4 md:grid-cols-2">
-          <div className="rounded-2xl border border-border bg-surface p-6">
-            <p className="text-lg font-bold">① 血氧機會量不準</p>
-            <p className="mt-2 leading-relaxed text-muted">
-              麻醉時會用夾在手指上的血氧機，以紅光穿透指甲量測血氧。甲油、光療會吸收光線，
-              讓數值失準或延遲警報。
-            </p>
-          </div>
-          <div className="rounded-2xl border border-border bg-surface p-6">
-            <p className="text-lg font-bold">② 看不到缺氧警訊</p>
-            <p className="mt-2 leading-relaxed text-muted">
-              缺氧時指甲床會變成藍紫色（發紺），醫護人員靠它判斷狀況。指甲彩繪會把這個警訊完全遮住。
+      <Wave fill="var(--surface-2)" />
+      <section className="bg-surface-2">
+        <div className="mx-auto grid max-w-5xl items-center gap-6 px-4 py-10 md:grid-cols-[0.8fr_1.2fr] md:py-14">
+          <Art name="oximeter" alt="手指夾著血氧機" className="mx-auto w-64 rounded-[58%_42%_52%_48%/48%_56%_44%_52%] border-2 border-border md:w-full" />
+          <div>
+            <h2 className="text-[1.8rem] md:text-[2.2rem]">為什麼開刀前要卸甲？</h2>
+            <ol className="mt-6 space-y-5">
+              <li className="flex gap-4">
+                <span className="font-round flex h-11 w-11 shrink-0 items-center justify-center rounded-full border-2 border-ink bg-peach text-xl">1</span>
+                <div>
+                  <p className="font-round text-xl">血氧機會量不準</p>
+                  <p className="mt-1 leading-relaxed text-muted">麻醉時手指會夾血氧機，靠紅光穿過指甲量血氧。指甲油、光療會擋住光，數字就不準了。</p>
+                </div>
+              </li>
+              <li className="flex gap-4">
+                <span className="font-round flex h-11 w-11 shrink-0 items-center justify-center rounded-full border-2 border-ink bg-mint text-xl">2</span>
+                <div>
+                  <p className="font-round text-xl">看不到缺氧的警訊</p>
+                  <p className="mt-1 leading-relaxed text-muted">缺氧時指甲床會變藍紫色，醫護人員靠它判斷狀況，彩繪會整個遮住。</p>
+                </div>
+              </li>
+            </ol>
+            <p className="mt-6 text-sm text-muted">
+              資料來源：<a href={SITE.sourceUrl} target="_blank" rel="noopener" className="underline">{SITE.sourceName}</a>
+              <Link href="/why/" className="font-round ml-3 text-base text-brand">看完整說明 →</Link>
             </p>
           </div>
         </div>
-        <p className="mt-4 text-sm text-muted">
-          資料來源：
-          <a href={SITE.sourceUrl} target="_blank" rel="noopener" className="underline">
-            {SITE.sourceName}
-          </a>
-          。<Link href="/why/" className="ml-1 font-semibold text-brand">看完整說明 →</Link>
-        </p>
       </section>
+      <Wave fill="var(--surface-2)" flip />
 
       {/* Modes */}
-      <section className="bg-surface-2">
-        <div className="mx-auto max-w-5xl px-4 py-14">
-          <h2 className="text-2xl font-bold md:text-3xl">我們到您身邊</h2>
-          <div className="mt-6 grid gap-4 md:grid-cols-2">
-            <div className="rounded-2xl bg-surface p-6">
-              <p className="text-3xl" aria-hidden>🏠</p>
-              <p className="mt-2 text-xl font-bold">到府服務</p>
-              <p className="mt-2 text-muted">手術前在家就能處理好，長輩、行動不便者不用出門。</p>
-            </div>
-            <div className="rounded-2xl bg-surface p-6">
-              <p className="text-3xl" aria-hidden>🏥</p>
-              <p className="mt-2 text-xl font-bold">到院病房</p>
-              <p className="mt-2 text-muted">已經住院、明天就要開刀？直接到病房床邊卸除。</p>
-            </div>
-          </div>
+      <section className="mx-auto max-w-5xl px-4 py-12">
+        <h2 className="text-center text-[1.8rem] md:text-[2.2rem]">我們去找您</h2>
+        <div className="mt-10 grid gap-12 md:grid-cols-2 md:gap-10">
+          <figure className="tape relative -rotate-2 rounded-md border border-border bg-surface p-3 pb-5 shadow-[0_6px_18px_rgba(74,52,40,0.10)]">
+            <Art name="home" alt="美甲師到家裡幫奶奶卸指甲" className="aspect-[4/3] w-full rounded-sm object-cover" />
+            <figcaption className="px-2 pt-4">
+              <p className="font-round text-2xl">到府服務</p>
+              <p className="mt-1 text-muted">在家就能處理好，長輩、行動不便的人不用出門。</p>
+            </figcaption>
+          </figure>
+          <figure className="tape relative rotate-2 rounded-md border border-border bg-surface p-3 pb-5 shadow-[0_6px_18px_rgba(74,52,40,0.10)] md:mt-8">
+            <Art name="hero" alt="美甲師到病房服務" className="aspect-[4/3] w-full rounded-sm object-cover object-[70%_50%]" />
+            <figcaption className="px-2 pt-4">
+              <p className="font-round text-2xl">到院病房</p>
+              <p className="mt-1 text-muted">已經住院、明天就開刀？直接到病床邊幫您卸。</p>
+            </figcaption>
+          </figure>
         </div>
       </section>
 
       {/* Steps */}
-      <section className="mx-auto max-w-5xl px-4 py-14">
-        <h2 className="text-2xl font-bold md:text-3xl">預約流程</h2>
-        <ol className="mt-6 grid gap-4 md:grid-cols-3">
+      <section className="mx-auto max-w-5xl px-4 pb-14">
+        <h2 className="text-center text-[1.8rem] md:text-[2.2rem]">預約好簡單</h2>
+        <ol className="mt-8 grid gap-6 md:grid-cols-[1fr_auto_1fr_auto_1fr] md:items-start md:gap-2">
           {STEPS.map((s, i) => (
-            <li key={s.t} className="rounded-2xl border border-border bg-surface p-6">
-              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-brand font-bold text-white">{i + 1}</span>
-              <p className="mt-3 text-lg font-bold">{s.t}</p>
-              <p className="mt-1 text-muted">{s.d}</p>
+            <li key={s.t} className="contents">
+              {i > 0 && <Doodle className="hidden w-16 self-center md:block" />}
+              <div className="flex items-center gap-4 md:flex-col md:text-center">
+                <Art name={s.art} className="w-24 shrink-0 md:w-36" />
+                <div>
+                  <p className="font-round text-xl"><span className="text-brand">{i + 1}.</span> {s.t}</p>
+                  <p className="mt-1 text-muted">{s.d}</p>
+                </div>
+              </div>
             </li>
           ))}
         </ol>
       </section>
 
-      <div className="mx-auto max-w-5xl px-4">
+      <div className="mx-auto max-w-4xl px-4">
         <CTA />
       </div>
     </>

@@ -193,7 +193,7 @@ export default function BookingForm() {
       <div className="mt-8 rounded-2xl bg-accent-soft p-6">
         <p className="text-lg font-bold">目前暫停線上預約</p>
         <p className="mt-2">{paused}</p>
-        {SITE.lineUrl && <a href={SITE.lineUrl} className="mt-4 inline-block rounded-full bg-line px-6 py-3 font-bold text-white">LINE 聯絡我們</a>}
+        {SITE.lineUrl && <a href={SITE.lineUrl} className="btn btn-line mt-4">LINE 聯絡我們</a>}
       </div>
     );
   }
@@ -210,13 +210,13 @@ export default function BookingForm() {
       <ol className="mb-6 flex gap-1.5" aria-label="預約步驟">
         {STEPS.map((s, i) => (
           <li key={s} className="flex-1">
-            <div className={`h-1.5 rounded-full ${i <= step ? "bg-brand" : "bg-border"}`} />
+            <div className={`h-1.5 rounded-full ${i <= step ? "bg-peach" : "bg-border"}`} />
             <p className={`mt-1.5 text-xs ${i === step ? "font-bold text-ink" : "text-muted"}`}>{i + 1}. {s}</p>
           </li>
         ))}
       </ol>
 
-      <div className="space-y-6 rounded-2xl border border-border bg-surface p-5 md:p-7">
+      <div className="space-y-6 paper p-5 md:p-7">
         {step === 0 && (
           <>
             <Field label="卸除部位" required>
@@ -367,17 +367,17 @@ export default function BookingForm() {
         <div className="flex gap-3 pt-2">
           {step > 0 && (
             <button type="button" onClick={() => { setError(null); setStep(step - 1); }}
-              className="rounded-full border border-border px-6 py-3 font-semibold" disabled={submitting}>
+              className="btn" disabled={submitting}>
               上一步
             </button>
           )}
           {step < 3 ? (
-            <button type="button" onClick={next} className="flex-1 rounded-full bg-brand py-3 text-lg font-bold text-white hover:bg-brand-strong">
+            <button type="button" onClick={next} className="btn btn-peach flex-1 text-lg">
               下一步
             </button>
           ) : (
             <button type="button" onClick={submit} disabled={submitting}
-              className="flex-1 rounded-full bg-brand py-3 text-lg font-bold text-white hover:bg-brand-strong disabled:opacity-60">
+              className="btn btn-peach flex-1 text-lg">
               {submitting ? "送出中…" : "確認送出預約"}
             </button>
           )}
@@ -390,7 +390,7 @@ export default function BookingForm() {
 function Field({ label, hint, required, children }: { label: string; hint?: string; required?: boolean; children: ReactNode }) {
   return (
     <div>
-      <p className="mb-2 font-semibold">
+      <p className="font-round mb-2 text-lg">
         {label}{required && <span className="ml-1 text-rush">*</span>}
         {hint && <span className="ml-2 text-sm font-normal text-muted">{hint}</span>}
       </p>

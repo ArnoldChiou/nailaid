@@ -67,7 +67,7 @@ function Notices() {
           <input type="checkbox" className="h-5 w-5" checked={pause} onChange={(e) => setPause(e.target.checked)} />
           暫停線上預約
         </label>
-        <button onClick={add} className="rounded-full bg-brand px-5 py-2.5 font-bold text-white">發布公告</button>
+        <button onClick={add} className="btn btn-peach py-2">發布公告</button>
       </div>
       <ul className="mt-6 divide-y divide-border">
         {list.map((n) => (
@@ -111,7 +111,7 @@ function BankSettings() {
         value={bank} onChange={(e) => setBank(e.target.value)}
       />
       <div className="mt-3 flex items-center gap-3">
-        <button onClick={save} className="rounded-full bg-brand px-5 py-2.5 font-bold text-white">儲存</button>
+        <button onClick={save} className="btn btn-peach py-2">儲存</button>
         {msg && <span className="text-sm text-muted">{msg}</span>}
       </div>
     </section>

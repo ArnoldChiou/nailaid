@@ -1,7 +1,7 @@
 export default function BankInfo({ info, className = "" }: { info?: string | null; className?: string }) {
   return (
-    <div className={`rounded-2xl bg-brand-soft p-5 ${className}`}>
-      <p className="font-bold">匯款資訊</p>
+    <div className={`paper bg-accent-soft p-5 ${className}`}>
+      <p className="font-round text-lg">匯款資訊</p>
       {info?.trim() ? (
         <p className="mt-2 whitespace-pre-line font-mono text-[1.05rem]">{info}</p>
       ) : (

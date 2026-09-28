@@ -17,25 +17,25 @@ const ROWS = [
 export default function ServicesPage() {
   return (
     <>
-      <PageHeader eyebrow="服務與價格" title="透明報價，確認後才出發" lead="網站上顯示的是預估價，實際金額會在確認預約時告訴您，您同意後才安排服務。" />
+      <PageHeader art="step-care" eyebrow="服務與價格" title="透明報價，確認後才出發" lead="網站上顯示的是預估價，實際金額會在確認預約時告訴您，您同意後才安排服務。" />
       <Container className="space-y-10 py-10">
         <section>
-          <h2 className="text-2xl font-bold">價格</h2>
-          <div className="mt-4 overflow-hidden rounded-2xl border border-border bg-surface">
+          <h2 className="text-2xl">價格</h2>
+          <div className="mt-4 overflow-hidden paper">
             {ROWS.map((r) => (
               <div key={r.item} className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 border-b border-border px-5 py-4 last:border-0">
                 <div>
-                  <p className="font-semibold">{r.item}</p>
+                  <p className="font-round ">{r.item}</p>
                   <p className="text-sm text-muted">{r.note}</p>
                 </div>
-                <p className="text-lg font-bold text-brand-strong">{r.price}</p>
+                <p className="font-round text-xl text-brand-strong">{r.price}</p>
               </div>
             ))}
           </div>
         </section>
 
         <section>
-          <h2 className="text-2xl font-bold">服務內容</h2>
+          <h2 className="text-2xl">服務內容</h2>
           <ul className="mt-4 grid gap-3 sm:grid-cols-2">
             {[
               ["卸除種類", "一般甲油、光療凝膠、水晶／延甲、甲片、鑽飾"],
@@ -43,8 +43,8 @@ export default function ServicesPage() {
               ["服務方式", "到府、到院病房（目前無店面）"],
               ["服務時間", "全天候，含夜間與假日（另有公告除外）"],
             ].map(([k, v]) => (
-              <li key={k} className="rounded-xl border border-border bg-surface p-4">
-                <p className="text-sm font-semibold text-brand">{k}</p>
+              <li key={k} className="paper p-4">
+                <p className="font-round text-sm text-brand">{k}</p>
                 <p className="mt-1">{v}</p>
               </li>
             ))}
@@ -52,14 +52,14 @@ export default function ServicesPage() {
         </section>
 
         <section>
-          <h2 className="text-2xl font-bold">付款方式</h2>
+          <h2 className="text-2xl">付款方式</h2>
           <div className="mt-4 grid gap-3 sm:grid-cols-2">
-            <div className="rounded-xl border border-border bg-surface p-4">
-              <p className="font-semibold">現金</p>
+            <div className="paper p-4">
+              <p className="font-round ">現金</p>
               <p className="mt-1 text-muted">服務完成後當場付款。</p>
             </div>
-            <div className="rounded-xl border border-border bg-surface p-4">
-              <p className="font-semibold">銀行匯款</p>
+            <div className="paper p-4">
+              <p className="font-round ">銀行匯款</p>
               <p className="mt-1 text-muted">預約成功後會顯示匯款資訊。</p>
             </div>
           </div>

@@ -2,19 +2,23 @@
 
 :root {
   color-scheme: light;
-  --bg: #fbf8f4;
-  --surface: #ffffff;
-  --surface-2: #f3eee7;
-  --ink: #1f2a2e;
-  --muted: #5b6b70;
-  --border: #e4ddd3;
-  --brand: #2f7d74;
-  --brand-strong: #235f58;
-  --brand-soft: #e3f0ee;
-  --accent: #d98a5f;
-  --accent-soft: #fbece3;
-  --rush: #b9461a;
-  --rush-soft: #fde9df;
+  /* Hand-drawn picture-book palette: cream paper, peach, mint, butter, cocoa ink. */
+  --bg: #fff6e9;
+  --surface: #fffdf8;
+  --surface-2: #fdecd9;
+  --ink: #4a3428;
+  --muted: #86695a;
+  --border: #eed8c0;
+  --brand: #b65a52;
+  --brand-strong: #96473f;
+  --brand-soft: #fde4de;
+  --accent: #6fbfa6;
+  --accent-soft: #e2f4ed;
+  --peach: #f4a7a0;
+  --mint: #9ed8c6;
+  --butter: #ffe7a3;
+  --rush: #c0462e;
+  --rush-soft: #fde4da;
   --line: #06c755;
 }
 
@@ -30,10 +34,14 @@
   --color-brand-soft: var(--brand-soft);
   --color-accent: var(--accent);
   --color-accent-soft: var(--accent-soft);
+  --color-peach: var(--peach);
+  --color-mint: var(--mint);
+  --color-butter: var(--butter);
   --color-rush: var(--rush);
   --color-rush-soft: var(--rush-soft);
   --color-line: var(--line);
   --font-sans: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-round: var(--font-huninn), "PingFang TC", "Microsoft JhengHei", sans-serif;
 }
 
 body {
@@ -48,6 +56,16 @@ html {
   font-size: 17px;
 }
 
+/* Unlayered on purpose: beats Tailwind's font-bold so the rounded face is never faux-bolded. */
+h1,
+h2,
+h3,
+.font-round {
+  font-family: var(--font-round);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
 .prose-zh p,
 .prose-zh li {
   line-height: 1.85;
@@ -55,13 +73,100 @@ html {
 
 .field {
   width: 100%;
-  border: 1px solid var(--border);
+  border: 2px solid var(--border);
   background: var(--surface);
-  border-radius: 0.75rem;
+  border-radius: 1rem;
   padding: 0.7rem 0.9rem;
   font-size: 1rem;
 }
 .field:focus {
-  outline: 2px solid var(--brand);
-  outline-offset: 1px;
+  outline: none;
+  border-color: var(--peach);
+  box-shadow: 0 0 0 3px var(--brand-soft);
+}
+
+/* Chunky "pressable" buttons with an ink outline and drop edge. */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4em;
+  font-family: var(--font-round);
+  font-weight: 400;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  padding: 0.7rem 1.6rem;
+  box-shadow: 0 4px 0 var(--ink);
+  transition: transform 0.08s, box-shadow 0.08s;
+  color: var(--ink);
+  background: var(--surface);
+}
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 0 var(--ink);
+}
+.btn:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 var(--ink);
+}
+.btn:disabled {
+  opacity: 0.6;
+  transform: none;
+}
+.btn-peach {
+  background: var(--peach);
+}
+.btn-mint {
+  background: var(--mint);
+}
+.btn-butter {
+  background: var(--butter);
+}
+.btn-line {
+  background: var(--line);
+  color: #fff;
+}
+
+/* Wobbly paper card */
+.paper {
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: 28px 34px 26px 32px / 32px 26px 34px 28px;
+}
+
+/* Sticker-like tag */
+.sticker {
+  display: inline-block;
+  font-family: var(--font-round);
+  padding: 0.3rem 0.9rem;
+  border: 2px dashed rgba(74, 52, 40, 0.45);
+  border-radius: 999px;
+  font-size: 0.92rem;
+}
+
+/* Hand-drawn wavy underline */
+.squiggle {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 8'%3E%3Cpath d='M0 5 Q5 1 10 5 T20 5 T30 5 T40 5' fill='none' stroke='%23f4a7a0' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  background-position: 0 100%;
+  background-size: 28px 8px;
+  padding-bottom: 0.18em;
+}
+
+/* Illustrations have their paper background cut out (scripts/process-art.mjs). */
+.art {
+  user-select: none;
+}
+
+/* Washi tape strip for polaroid photos */
+.tape::before {
+  content: "";
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  width: 90px;
+  height: 24px;
+  transform: translateX(-50%) rotate(-4deg);
+  background: rgba(158, 216, 198, 0.75);
+  border-radius: 3px;
 }

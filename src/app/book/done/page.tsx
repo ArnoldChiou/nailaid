@@ -6,6 +6,7 @@ import { SITE } from "@/lib/site";
 import { money } from "@/lib/pricing";
 import { LAST_BOOKING_KEY, type BookingResult } from "../BookingForm";
 import BankInfo from "@/components/BankInfo";
+import { Art } from "@/components/Deco";
 
 const noSubscribe = () => () => {};
 function readLastBooking(): string | null {
@@ -40,13 +41,13 @@ export default function DonePage() {
   return (
     <div className="mx-auto max-w-xl px-4 py-10">
       <div className="text-center">
-        <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-brand text-3xl text-white">✓</div>
+        <Art name="done" eager className="mx-auto w-40" />
         <h1 className="mt-4 text-[1.9rem] font-bold">預約已送出</h1>
         <p className="mt-2 text-muted">我們會盡快以電話或 LINE 與您確認時間與金額{b.urgency === "rush" && "，急件會優先處理"}。</p>
         {b.demo && <p className="mt-3 text-sm text-rush">（示範模式：此預約未被儲存）</p>}
       </div>
 
-      <div className="mt-8 rounded-2xl border border-border bg-surface p-6">
+      <div className="mt-8 paper p-6">
         <p className="text-sm text-muted">預約編號</p>
         <p className="mt-1 font-mono text-3xl font-bold tracking-wider">{b.booking_no}</p>
         <p className="mt-2 text-sm text-muted">請截圖或記下編號，可用編號＋手機末 4 碼查詢預約狀態。</p>
@@ -68,8 +69,8 @@ export default function DonePage() {
       )}
 
       <div className="mt-8 flex flex-wrap justify-center gap-3">
-        {SITE.lineUrl && <a href={SITE.lineUrl} className="rounded-full bg-line px-6 py-3 font-bold text-white">加 LINE 好友</a>}
-        <Link href="/" className="rounded-full border border-border px-6 py-3 font-semibold">回首頁</Link>
+        {SITE.lineUrl && <a href={SITE.lineUrl} className="btn btn-line">加 LINE 好友</a>}
+        <Link href="/" className="btn">回首頁</Link>
       </div>
     </div>
   );

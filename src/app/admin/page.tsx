@@ -225,7 +225,7 @@ function Detail({ b, onSaved }: { b: Booking; onSaved: () => void }) {
           <textarea className="field mt-1 min-h-20" value={adminNote} onChange={(e) => setAdminNote(e.target.value)} />
         </label>
         <div className="flex items-center gap-3">
-          <button onClick={save} className="rounded-full bg-brand px-6 py-2.5 font-bold text-white">儲存</button>
+          <button onClick={save} className="btn btn-peach py-2">儲存</button>
           {msg && <span className="text-sm text-muted">{msg}</span>}
         </div>
       </div>

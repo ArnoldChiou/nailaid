@@ -1,14 +1,21 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { Art, Wave } from "./Deco";
 
-export function PageHeader({ eyebrow, title, lead }: { eyebrow?: string; title: string; lead?: ReactNode }) {
+export function PageHeader({ eyebrow, title, lead, art = "mascot" }: { eyebrow?: string; title: string; lead?: ReactNode; art?: string }) {
   return (
-    <section className="border-b border-border bg-surface-2">
-      <div className="mx-auto max-w-3xl px-4 py-10 md:py-14">
-        {eyebrow && <p className="mb-2 text-sm font-semibold tracking-wider text-brand">{eyebrow}</p>}
-        <h1 className="text-[1.9rem] font-bold leading-tight md:text-4xl">{title}</h1>
-        {lead && <p className="mt-4 text-lg leading-relaxed text-muted">{lead}</p>}
+    <section>
+      <div className="bg-surface-2">
+        <div className="mx-auto flex max-w-3xl items-center gap-4 px-4 pb-6 pt-10 md:pb-8 md:pt-14">
+          <div className="min-w-0 flex-1">
+            {eyebrow && <p className="sticker mb-3 bg-butter">{eyebrow}</p>}
+            <h1 className="text-[2rem] leading-tight md:text-[2.6rem]">{title}</h1>
+            {lead && <p className="mt-4 text-lg leading-relaxed text-muted">{lead}</p>}
+          </div>
+          <Art name={art} className={`hidden w-32 shrink-0 sm:block md:w-40 ${art === "oximeter" ? "rounded-[58%_42%_52%_48%/48%_56%_44%_52%]" : ""}`} />
+        </div>
       </div>
+      <Wave fill="var(--surface-2)" flip />
     </section>
   );
 }
@@ -18,17 +25,18 @@ export function Container({ children, className = "" }: { children: ReactNode; c
 }
 
 export function Card({ children, className = "" }: { children: ReactNode; className?: string }) {
-  return <div className={`rounded-2xl border border-border bg-surface p-5 md:p-6 ${className}`}>{children}</div>;
+  return <div className={`paper p-5 md:p-6 ${className}`}>{children}</div>;
 }
 
 export function CTA({ className = "" }: { className?: string }) {
   return (
-    <div className={`rounded-2xl bg-brand p-6 text-white md:p-8 ${className}`}>
-      <p className="text-xl font-bold md:text-2xl">手術快到了？現在就預約</p>
-      <p className="mt-2 text-white/85">台北・新北・桃園，到府或到院病房，全天候接急件。</p>
-      <Link href="/book/" className="mt-5 inline-block rounded-full bg-white px-6 py-3 font-bold text-brand-strong hover:bg-brand-soft">
-        線上預約 →
-      </Link>
+    <div className={`relative flex flex-col items-center gap-4 rounded-[36px] border-2 border-ink bg-butter px-6 pb-8 pt-6 text-center sm:flex-row sm:text-left md:px-10 ${className}`}>
+      <Art name="mascot" className="w-28 shrink-0 md:w-32" />
+      <div className="flex-1">
+        <p className="font-round text-2xl md:text-[1.7rem]">手術快到了？交給我們！</p>
+        <p className="mt-1 text-ink/80">台北・新北・桃園，到府或到院病房，全天候接急件。</p>
+      </div>
+      <Link href="/book/" className="btn btn-peach shrink-0 text-lg">線上預約 →</Link>
     </div>
   );
 }

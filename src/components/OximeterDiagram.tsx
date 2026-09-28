@@ -1,7 +1,7 @@
 // Side-by-side: light passes a bare nail to the sensor; a painted nail absorbs it.
 export default function OximeterDiagram() {
   return (
-    <figure className="rounded-3xl border border-border bg-surface p-5">
+    <figure className="paper p-5">
       <svg viewBox="0 0 320 190" className="w-full" role="img" aria-labelledby="oxi-title">
         <title id="oxi-title">血氧機光線穿透示意：素甲可正常量測，彩繪指甲會阻擋光線</title>
         {[

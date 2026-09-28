@@ -99,7 +99,7 @@ function SetPassword({ onDone }: { onDone: () => void }) {
       <input className="field" type="password" autoComplete="new-password" placeholder="新密碼（至少 8 個字元）" required value={pw} onChange={(e) => setPw(e.target.value)} />
       <input className="field" type="password" autoComplete="new-password" placeholder="再輸入一次" required value={pw2} onChange={(e) => setPw2(e.target.value)} />
       {err && <p className="text-sm text-rush">{err}</p>}
-      <button disabled={busy} className="w-full rounded-full bg-brand py-3 font-bold text-white disabled:opacity-60">儲存密碼</button>
+      <button disabled={busy} className="btn btn-peach w-full">儲存密碼</button>
     </form>
   );
 }
@@ -134,7 +134,7 @@ function Login() {
       <input className="field" type="email" autoComplete="username" placeholder="Email" required value={email} onChange={(e) => setEmail(e.target.value)} />
       <input className="field" type="password" autoComplete="current-password" placeholder="密碼" required value={password} onChange={(e) => setPassword(e.target.value)} />
       {err && <p className="text-sm text-rush">{err}</p>}
-      <button disabled={busy} className="w-full rounded-full bg-brand py-3 font-bold text-white disabled:opacity-60">登入</button>
+      <button disabled={busy} className="btn btn-peach w-full">登入</button>
       {sent ? (
         <p className="text-sm text-muted">已寄出設定密碼的信，請到信箱點連結。</p>
       ) : (

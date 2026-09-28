@@ -12,19 +12,19 @@ export default function SiteHeader() {
   if (pathname.startsWith("/admin")) return null;
 
   return (
-    <header className="sticky top-0 z-30 border-b border-border bg-bg/95 backdrop-blur">
-      <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-4">
+    <header className="sticky top-0 z-30 border-b-2 border-dashed border-border bg-bg/95 backdrop-blur">
+      <div className="mx-auto flex h-[68px] max-w-5xl items-center justify-between px-4">
         <Link href="/" onClick={() => setOpen(false)} aria-label="指安 首頁">
           <Logo />
         </Link>
 
         <nav className="hidden items-center gap-6 md:flex">
           {NAV.map((n) => (
-            <Link key={n.href} href={n.href} className="text-[0.95rem] text-muted hover:text-ink">
+            <Link key={n.href} href={n.href} className="font-round text-[0.98rem] text-muted hover:text-brand">
               {n.label}
             </Link>
           ))}
-          <Link href="/book/" className="rounded-full bg-brand px-5 py-2 font-semibold text-white hover:bg-brand-strong">
+          <Link href="/book/" className="btn btn-peach px-5 py-1.5">
             立即預約
           </Link>
         </nav>
@@ -44,7 +44,7 @@ export default function SiteHeader() {
       {open && (
         <nav className="border-t border-border bg-bg px-4 pb-4 md:hidden">
           {NAV.map((n) => (
-            <Link key={n.href} href={n.href} onClick={() => setOpen(false)} className="block border-b border-border py-3.5 text-lg">
+            <Link key={n.href} href={n.href} onClick={() => setOpen(false)} className="font-round block border-b-2 border-dashed border-border py-3.5 text-lg">
               {n.label}
             </Link>
           ))}
