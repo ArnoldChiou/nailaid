@@ -156,6 +156,11 @@ h3,
   padding-bottom: 0.18em;
 }
 
+/* <Art> uses <picture class="contents">; keep <source> from becoming a grid/flex item. */
+picture > source {
+  display: none;
+}
+
 /* Illustrations have their paper background cut out (scripts/process-art.mjs). */
 .art {
   user-select: none;

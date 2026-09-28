@@ -14,7 +14,7 @@ export default function Home() {
     <>
       {/* Hero */}
       <section className="overflow-hidden">
-        <div className="mx-auto grid max-w-5xl items-center gap-4 px-4 pb-8 pt-8 md:grid-cols-[1fr_1.15fr] md:gap-2 md:pb-14 md:pt-14">
+        <div className="mx-auto grid max-w-5xl items-center gap-4 px-4 pb-8 pt-8 lg:grid-cols-[1fr_1.15fr] lg:gap-2 md:pb-14 md:pt-14">
           <div className="relative z-10">
             <div className="flex flex-wrap gap-2">
               <span className="sticker -rotate-2 bg-mint/60">台北・新北・桃園</span>
@@ -39,7 +39,7 @@ export default function Home() {
               <span className="text-muted">24 小時內急件 +{SITE.rushFee}</span>
             </div>
           </div>
-          <Art name="hero" eager sizes="(min-width: 768px) 560px, 100vw" alt="美甲師提著工具箱到病房，病人開心揮手" className="w-full md:-mr-8 md:scale-110" />
+          <Art name="hero" eager sizes="(min-width: 1024px) 560px, (min-width: 768px) 720px, 100vw" alt="美甲師提著工具箱到病房，病人開心揮手" className="mx-auto w-full max-w-2xl lg:-mr-8 lg:max-w-none lg:scale-110" />
         </div>
       </section>
 

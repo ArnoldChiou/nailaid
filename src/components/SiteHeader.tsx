@@ -18,7 +18,7 @@ export default function SiteHeader() {
           <Logo />
         </Link>
 
-        <nav className="hidden items-center gap-6 md:flex">
+        <nav className="hidden items-center gap-6 lg:flex">
           {NAV.map((n) => (
             <Link key={n.href} href={n.href} className="font-round text-[0.98rem] text-muted hover:text-brand">
               {n.label}
@@ -30,7 +30,7 @@ export default function SiteHeader() {
         </nav>
 
         <button
-          className="-mr-2 p-2 md:hidden"
+          className="-mr-2 p-2 lg:hidden"
           aria-label={open ? "關閉選單" : "開啟選單"}
           aria-expanded={open}
           onClick={() => setOpen(!open)}
@@ -42,7 +42,7 @@ export default function SiteHeader() {
       </div>
 
       {open && (
-        <nav className="border-t border-border bg-bg px-4 pb-4 md:hidden">
+        <nav className="border-t border-border bg-bg px-4 pb-4 lg:hidden">
           {NAV.map((n) => (
             <Link key={n.href} href={n.href} onClick={() => setOpen(false)} className="font-round block border-b-2 border-dashed border-border py-3.5 text-lg">
               {n.label}
