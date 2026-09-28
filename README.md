@@ -44,10 +44,13 @@ npx supabase link --project-ref <你的 project ref>
 npx supabase secrets set LINE_CHANNEL_ACCESS_TOKEN=... LINE_ADMIN_USER_ID=U... WEBHOOK_SECRET=<自訂一串亂碼>
 npx supabase functions deploy notify-line --no-verify-jwt
 ```
-接著在 Supabase Dashboard → Database → **Webhooks** → Create：
-- Table：`bookings`，Events：**Insert**
-- Type：Supabase Edge Functions → `notify-line`
-- HTTP Headers 加上 `x-webhook-secret: <同上的亂碼>`
+新訂單由資料庫 trigger（`0002_notify_trigger.sql`）呼叫此 function。把同一串 WEBHOOK_SECRET 存進 Vault：
+```sql
+select vault.create_secret('<同上的亂碼>', 'notify_webhook_secret');
+```
+呼叫結果可在 `net._http_response` 查看。
+
+> 目前線上專案（ref `guwkwpgndvplygeiqead`）以上步驟皆已完成。
 
 ### 4. GitHub Pages
 1. 在 GitHub 建立 **public** repo `nailsafe`，把本專案 push 到 `main`。
