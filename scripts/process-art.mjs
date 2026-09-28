@@ -7,7 +7,8 @@ import fs from "node:fs";
 import sharp from "sharp";
 
 const JOBS = [
-  // name, output widths, crop (fraction kept, centered), cutout background?
+  // name, output widths, crop (fraction kept, centered), cutout background?, source file (defaults to name)
+  ["hero-brand", [480, 800, 1200], 1, true, "hero-brand-v2"],
   ["hero", [480, 800, 1200], 1, true],
   ["home", [480, 800], 1, false],
   ["oximeter", [320, 640], 0.8, false],
@@ -53,8 +54,8 @@ fs.mkdirSync("public/art", { recursive: true });
 const manifest = {};
 let total = 0;
 
-for (const [name, widths, crop, transparent] of JOBS) {
-  let img = sharp(`art/${name}.png`);
+for (const [name, widths, crop, transparent, source = name] of JOBS) {
+  let img = sharp(`art/${source}.png`);
   const { width: W, height: H } = await img.metadata();
   const [fx, fy] = Array.isArray(crop) ? crop : [crop, crop];
   const cw = Math.round(W * fx), ch = Math.round(H * fy);
