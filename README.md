@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 指安 NailSafe
 
-## Getting Started
+手術前指甲卸除 — 到府／到院接案預約網站。架構說明見 [ARCHITECTURE.md](ARCHITECTURE.md)。
 
-First, run the development server:
+- 前端：Next.js（static export）＋ Tailwind，部署於 GitHub Pages
+- 後端：Supabase（資料庫、管理者登入、照片儲存、Edge Function）
+- 通知：新訂單 → LINE Messaging API 推播給管理者
+
+## 本機開發
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev        # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+未設定 `.env.local` 時網站會以 **示範模式** 運作：可完整操作預約流程，但不會儲存或通知。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 上線設定（一次性）
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 1. Supabase
+1. 到 <https://supabase.com> 建立專案（Region 建議 Tokyo 或 Singapore）。
+2. SQL Editor → 貼上 `supabase/migrations/0001_init.sql` 全部內容執行。
+3. Authentication → Users → **Add user**，建立管理者帳號（Email＋密碼）。
+4. SQL Editor 執行，把該帳號設為管理者：
+   ```sql
+   insert into public.admins (user_id)
+   select id from auth.users where email = '你的管理者email';
+   ```
+5. Authentication → Providers → Email：關閉 **Allow new users to sign up**（只允許你手動建立的帳號）。
+6. Project Settings → API：記下 **Project URL** 與 **anon public key**。
 
-## Learn More
+### 2. LINE 官方帳號（新訂單通知）
+1. 到 <https://manager.line.biz> 建立 LINE 官方帳號。
+2. 設定 → Messaging API → 啟用，建立 Provider。
+3. 到 <https://developers.line.biz> 開啟該 channel：
+   - **Messaging API** 分頁 → 發行 *Channel access token (long-lived)*
+   - **Basic settings** 分頁 → 最下方 *Your user ID*（`U` 開頭）
+4. 用你自己的 LINE 加這個官方帳號為好友（否則收不到推播）。
 
-To learn more about Next.js, take a look at the following resources:
+### 3. 部署 LINE 通知 Edge Function
+```bash
+npx supabase login
+npx supabase link --project-ref <你的 project ref>
+npx supabase secrets set LINE_CHANNEL_ACCESS_TOKEN=... LINE_ADMIN_USER_ID=U... WEBHOOK_SECRET=<自訂一串亂碼>
+npx supabase functions deploy notify-line --no-verify-jwt
+```
+接著在 Supabase Dashboard → Database → **Webhooks** → Create：
+- Table：`bookings`，Events：**Insert**
+- Type：Supabase Edge Functions → `notify-line`
+- HTTP Headers 加上 `x-webhook-secret: <同上的亂碼>`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 4. GitHub Pages
+1. 在 GitHub 建立 **public** repo `nailsafe`，把本專案 push 到 `main`。
+2. Repo → Settings → Pages → Source 選 **GitHub Actions**。
+3. Repo → Settings → Secrets and variables → Actions → **Variables** 新增：
+   - `NEXT_PUBLIC_SUPABASE_URL`
+   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+4. 每次 push 到 `main` 會自動部署到 `https://arnoldchiou.github.io/nailsafe/`。
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+> anon key 設計上可以公開，資料安全由資料庫的 RLS 保護。LINE token 只存在 Supabase secrets，**不要**放進 repo。
 
-## Deploy on Vercel
+### 5. 上線前待填
+- `src/lib/site.ts`：`phone`、`lineUrl`（LINE 官方帳號加好友連結）
+- 後台 → 公告與設定：填寫匯款資訊
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 後台
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+`/admin/` — 以管理者帳號登入：
+- **訂單**：急件排最前面；可更新狀態、確認時間、車馬費、最終金額、付款狀態、查看指甲照片
+- **公告與設定**：網站公告（可暫停線上預約）、匯款資訊
