@@ -1,16 +1,21 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import { CITIES } from "@/lib/site";
 import { CTA, Container, PageHeader } from "@/components/ui";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbSchema } from "@/lib/schema";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: "服務範圍",
-  description: "甲援提供台北市、新北市、桃園市到府與到院病房卸甲服務。",
-};
+  description: "甲援提供台北市、新北市、桃園市到府與到院病房卸甲服務。台北免車馬費，新北、桃園依距離酌收。",
+  path: "/area/",
+});
 
 export default function AreaPage() {
   return (
     <>
-      <PageHeader art="step-book" eyebrow="服務範圍" title="台北・新北・桃園" lead="到府或到院病房服務。其他地區歡迎先用 LINE 或電話詢問。" />
+      <JsonLd data={breadcrumbSchema([{ name: "服務範圍", path: "/area/" }])} />
+      <PageHeader art="step-book" eyebrow="服務範圍" title="台北・新北・桃園 到府到院卸甲" lead="到府或到院病房服務。其他地區歡迎先用 LINE 或電話詢問。" />
       <Container className="space-y-10 py-10">
         <div className="grid gap-4 sm:grid-cols-3">
           {CITIES.map((c) => (

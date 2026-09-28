@@ -1,11 +1,15 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import { SITE } from "@/lib/site";
 import { CTA, Container, PageHeader } from "@/components/ui";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbSchema, serviceSchema } from "@/lib/schema";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: "服務與價格",
-  description: `手術前卸甲服務價格：台北市 NT$${SITE.basePrice} 起，24 小時內急件加 NT$${SITE.rushFee}，新北、桃園依距離酌收車馬費。`,
-};
+  description: `手術前卸甲多少錢？台北市 NT$${SITE.basePrice.toLocaleString("en-US")} 起，24 小時內急件加 NT$${SITE.rushFee}，新北、桃園依距離酌收車馬費。現金或匯款。`,
+  path: "/services/",
+});
 
 const ROWS = [
   { item: "卸甲服務（台北市）", price: `NT$${SITE.basePrice.toLocaleString()} 起`, note: "依部位、指甲種類與指數報價" },
@@ -17,6 +21,7 @@ const ROWS = [
 export default function ServicesPage() {
   return (
     <>
+      <JsonLd data={[serviceSchema(), breadcrumbSchema([{ name: "服務與價格", path: "/services/" }])]} />
       <PageHeader art="step-care" eyebrow="服務與價格" title="透明報價，確認後才出發" lead="網站上顯示的是預估價，實際金額會在確認預約時告訴您，您同意後才安排服務。" />
       <Container className="space-y-10 py-10">
         <section>

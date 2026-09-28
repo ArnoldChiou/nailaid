@@ -1,7 +1,12 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import { Container, PageHeader } from "@/components/ui";
 
-export const metadata: Metadata = { title: "隱私權政策" };
+export const metadata: Metadata = pageMeta({
+  title: "隱私權政策",
+  description: "甲援個人資料蒐集目的、項目、保存期間與您的權利。我們不蒐集病名、手術類型或身分證字號。",
+  path: "/privacy/",
+});
 
 export default function PrivacyPage() {
   return (

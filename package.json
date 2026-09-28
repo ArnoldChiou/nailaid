@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "art": "node scripts/process-art.mjs"
+    "art": "node scripts/process-art.mjs",
+    "brand": "node scripts/make-brand-assets.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.117.2",

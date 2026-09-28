@@ -1,6 +1,10 @@
 export const SITE = {
   name: "甲援",
   nameEn: "NailAid",
+  url: "https://nailaid.nordchiou.com",
+  ogImage: "/og.jpg",
+  // Bump when the health-education / pricing content changes (shown on /why/, used in JSON-LD + sitemap).
+  updated: "2026-09-29",
   tagline: "手術前指甲卸除・到府到院・急件可接",
   description:
     "手術、麻醉前需卸除指甲油、光療與水晶指甲。甲援提供台北、新北、桃園到府與到院病房卸甲服務，全天候接急件。",

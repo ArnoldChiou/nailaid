@@ -1,8 +1,13 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import { SITE } from "@/lib/site";
 import { Container, PageHeader } from "@/components/ui";
 
-export const metadata: Metadata = { title: "服務條款" };
+export const metadata: Metadata = pageMeta({
+  title: "服務條款",
+  description: "甲援手術前卸甲服務條款：預約確認、報價、急件加價、改期取消與到院服務須知。",
+  path: "/terms/",
+});
 
 export default function TermsPage() {
   return (

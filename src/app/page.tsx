@@ -1,7 +1,12 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { SITE } from "@/lib/site";
+import { FAQ } from "@/lib/faq";
+import { pageMeta } from "@/lib/seo";
 import { CTA } from "@/components/ui";
 import { Art, Doodle, Wave } from "@/components/Deco";
+
+export const metadata: Metadata = pageMeta({ description: SITE.description, path: "/" });
 
 const STEPS = [
   { art: "step-book", t: "線上預約", d: "填手術時間、地點和指甲狀況，1 分鐘就好。" },
@@ -113,6 +118,22 @@ export default function Home() {
             </li>
           ))}
         </ol>
+      </section>
+
+      {/* Quick answers — the questions people most often type into search / AI assistants. */}
+      <section className="mx-auto max-w-3xl px-4 pb-14">
+        <h2 className="text-center text-[1.8rem] md:text-[2.2rem]">常見問題</h2>
+        <dl className="mt-6 space-y-3">
+          {FAQ.slice(0, 4).map(({ q, a }) => (
+            <div key={q} className="paper px-5 py-4">
+              <dt className="font-round text-lg">{q}</dt>
+              <dd className="mt-2 leading-relaxed text-muted">{a}</dd>
+            </div>
+          ))}
+        </dl>
+        <p className="mt-5 text-center">
+          <Link href="/faq/" className="font-round text-brand">看全部常見問題 →</Link>
+        </p>
       </section>
 
       <div className="mx-auto max-w-4xl px-4">

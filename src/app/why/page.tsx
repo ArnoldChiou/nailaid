@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import { SITE } from "@/lib/site";
 import { CTA, Container, PageHeader } from "@/components/ui";
 import OximeterDiagram from "@/components/OximeterDiagram";
+import JsonLd from "@/components/JsonLd";
+import { articleSchema, breadcrumbSchema } from "@/lib/schema";
 
-export const metadata: Metadata = {
-  title: "為什麼手術前要卸甲",
-  description: "麻醉前為什麼要卸除指甲油、光療與水晶指甲？血氧機量測與發紺觀察的原理說明。",
-};
+const TITLE = "為什麼手術前要卸甲";
+const DESCRIPTION = "開刀、麻醉前為什麼要卸除指甲油、光療與水晶指甲？因為會干擾血氧機量測、遮住缺氧的發紺警訊。手腳都要卸，建議術前 1～3 天完成。";
+
+export const metadata: Metadata = pageMeta({ title: TITLE, description: DESCRIPTION, path: "/why/" });
 
 const MUST_REMOVE = ["一般指甲油（含透明、裸色）", "光療凝膠指甲", "水晶指甲、延甲", "甲片、貼片", "鑽飾、亮片等裝飾"];
 
@@ -18,7 +21,28 @@ export default function WhyPage() {
         title="為什麼手術前要卸除指甲彩繪？"
         lead="這不是美觀問題，而是手術與麻醉安全。醫院會要求手、腳的指甲彩繪都要在入院前卸除乾淨。"
       />
+      <JsonLd
+        data={[
+          articleSchema({ path: "/why/", title: "為什麼手術前要卸除指甲彩繪？", description: DESCRIPTION }),
+          breadcrumbSchema([{ name: TITLE, path: "/why/" }]),
+        ]}
+      />
       <Container className="prose-zh space-y-10 py-10">
+        {/* Answer-first summary: the part search snippets and AI assistants quote. */}
+        <section className="paper bg-butter/40 p-5" aria-labelledby="summary">
+          <h2 id="summary" className="text-xl">重點摘要</h2>
+          <ul className="mt-3 list-disc space-y-1.5 pl-5">
+            <li><strong>要卸：</strong>手術、麻醉前需卸除所有指甲油、光療凝膠、水晶指甲，<strong>手指和腳趾都要</strong>。</li>
+            <li><strong>原因一：</strong>指甲彩繪會阻擋血氧機的光線，讓血氧數值不準或延遲警報。</li>
+            <li><strong>原因二：</strong>彩繪會遮住缺氧時指甲床變藍紫色（發紺）的警訊。</li>
+            <li><strong>時間：</strong>建議手術前 1～3 天完成；光療、水晶指甲請勿硬撕，交給專業卸除。</li>
+          </ul>
+          <p className="mt-3 text-sm text-muted">
+            資料來源：<a href={SITE.sourceUrl} target="_blank" rel="noopener" className="underline">{SITE.sourceName}</a>
+            ・最後更新 <time dateTime={SITE.updated}>{SITE.updated}</time>
+          </p>
+        </section>
+
         <section>
           <h2 className="text-2xl">① 血氧機需要「看穿」指甲</h2>
           <p className="mt-3">

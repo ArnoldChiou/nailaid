@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import BookingForm from "./BookingForm";
 import { Art } from "@/components/Deco";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: "線上預約",
-  description: "手術前卸甲線上預約：台北、新北、桃園到府與到院病房服務，全天候接急件。",
-};
+  description: "手術前卸甲線上預約，約 1 分鐘完成：台北、新北、桃園到府與到院病房服務，全天候接急件。",
+  path: "/book/",
+});
 
 export default function BookPage() {
   return (

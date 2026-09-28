@@ -1,7 +1,12 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import { CTA, Container, PageHeader } from "@/components/ui";
 
-export const metadata: Metadata = { title: "關於甲援" };
+export const metadata: Metadata = pageMeta({
+  title: "關於甲援",
+  description: "甲援 NailAid 專門處理手術前的指甲卸除，到府、到院病房都可以，讓病人和家屬少一件擔心的事。",
+  path: "/about/",
+});
 
 export default function AboutPage() {
   return (

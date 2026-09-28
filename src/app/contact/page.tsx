@@ -1,9 +1,14 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import Link from "next/link";
 import { SITE } from "@/lib/site";
 import { Container, PageHeader } from "@/components/ui";
 
-export const metadata: Metadata = { title: "聯絡我們" };
+export const metadata: Metadata = pageMeta({
+  title: "聯絡我們",
+  description: `手術前卸甲諮詢：LINE ${SITE.lineId}、電話 ${SITE.phone}，或直接線上預約。台北、新北、桃園到府到院，全天候接急件。`,
+  path: "/contact/",
+});
 
 export default function ContactPage() {
   const any = SITE.lineUrl || SITE.phone;
