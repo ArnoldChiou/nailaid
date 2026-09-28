@@ -53,12 +53,12 @@ select vault.create_secret('<同上的亂碼>', 'notify_webhook_secret');
 > 目前線上專案（ref `guwkwpgndvplygeiqead`）以上步驟皆已完成。
 
 ### 4. GitHub Pages
-1. 在 GitHub 建立 **public** repo `nailsafe`，把本專案 push 到 `main`。
+1. 在 GitHub 建立 **public** repo `nailaid`，把本專案 push 到 `main`。
 2. Repo → Settings → Pages → Source 選 **GitHub Actions**。
 3. Repo → Settings → Secrets and variables → Actions → **Variables** 新增：
    - `NEXT_PUBLIC_SUPABASE_URL`
    - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
-4. 每次 push 到 `main` 會自動部署到 `https://arnoldchiou.github.io/nailsafe/`。
+4. 每次 push 到 `main` 會自動部署到 `https://arnoldchiou.github.io/nailaid/`。
 
 > anon key 設計上可以公開，資料安全由資料庫的 RLS 保護。LINE token 只存在 Supabase secrets，**不要**放進 repo。
 

@@ -11,7 +11,7 @@ import { URGENCY_LABEL, computeUrgency, estimate, formatTW, money } from "@/lib/
 import { PHOTO_BUCKET, isConfigured, supabase } from "@/lib/supabase";
 import { fetchNotices } from "@/components/NoticeBar";
 
-export const LAST_BOOKING_KEY = "nailsafe:lastBooking";
+export const LAST_BOOKING_KEY = "nailaid:lastBooking";
 
 export type BookingResult = {
   booking_no: string;

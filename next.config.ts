@@ -1,6 +1,6 @@
 import type { NextConfig } from "next";
 
-// GitHub Pages serves the site under /<repo>. CI sets NEXT_PUBLIC_BASE_PATH=/nailsafe;
+// GitHub Pages serves the site under /<repo>. CI sets NEXT_PUBLIC_BASE_PATH=/nailaid;
 // locally it is empty so `npm run dev` works at http://localhost:3000.
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
