@@ -19,11 +19,36 @@ async function icon(size, out, { pad = 0.1, background = CREAM } = {}) {
   console.log(out);
 }
 
-await icon(512, "src/app/icon.png", { background: CLEAR, pad: 0.04 });
+// Google Search only shows favicons that are square multiples of 48px, so the
+// search-facing icons are 192 (4×48) and a 48/32/16 favicon.ico.
+await icon(192, "src/app/icon.png", { background: CLEAR, pad: 0.04 });
 await icon(180, "src/app/apple-icon.png");
 await icon(192, "public/icon-192.png");
 await icon(512, "public/icon-512.png");
-fs.rmSync("src/app/favicon.ico", { force: true }); // Next's default icon
+
+// favicon.ico = ICO container holding PNG images (supported by all modern browsers and Google).
+const sizes = [48, 32, 16];
+const pngs = await Promise.all(sizes.map(async (s) => {
+  const m = await sharp(mascot).resize(s, s, { fit: "contain", background: CLEAR }).toBuffer();
+  return sharp({ create: { width: s, height: s, channels: 4, background: CLEAR } }).composite([{ input: m }]).png().toBuffer();
+}));
+const header = Buffer.alloc(6 + 16 * sizes.length);
+header.writeUInt16LE(0, 0); // reserved
+header.writeUInt16LE(1, 2); // type: icon
+header.writeUInt16LE(sizes.length, 4);
+let offset = header.length;
+sizes.forEach((s, i) => {
+  const e = 6 + 16 * i;
+  header.writeUInt8(s, e); // width
+  header.writeUInt8(s, e + 1); // height
+  header.writeUInt16LE(1, e + 4); // colour planes
+  header.writeUInt16LE(32, e + 6); // bits per pixel
+  header.writeUInt32LE(pngs[i].length, e + 8);
+  header.writeUInt32LE(offset, e + 12);
+  offset += pngs[i].length;
+});
+fs.writeFileSync("src/app/favicon.ico", Buffer.concat([header, ...pngs]));
+console.log("src/app/favicon.ico");
 
 // 1200x630 share card: branded hero illustration on cream.
 const hero = await sharp("public/art/hero-brand-1200.webp").resize(1100, 590, { fit: "contain", background: CLEAR }).toBuffer();
